@@ -7,7 +7,7 @@ Before you close the Form ,please click F9 to unlock
 or you will not allow to close the program
 
 
-#Usage
+# Usage
 When set Time and click "lock"
 The Timer will start Tick
 Form will minisize to right bottom
