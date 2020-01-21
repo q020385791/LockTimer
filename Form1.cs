@@ -13,8 +13,6 @@ namespace LockTimer
 {
     public partial class Form1 : Form
     {
-
-      
         public Form1()
         {
             InitializeComponent();
@@ -49,6 +47,8 @@ namespace LockTimer
 
             if (this.WindowState == FormWindowState.Normal)
                 this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
+            this.Hide();
         }
 
         public void LockComputer()
@@ -78,6 +78,8 @@ namespace LockTimer
         {
             if (this.WindowState == FormWindowState.Normal)
                 this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
+            this.Hide();
         }
 
         private void NotifyIcon1_DoubleClick(object sender, EventArgs e)
@@ -104,8 +106,19 @@ namespace LockTimer
 
         private void 結束ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
-            Close();
+            if (IfClose)
+            {
+                stopListen();
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                MessageBox.Show("已鎖定，無法關閉，請看說明");
+                
+                if (this.WindowState == FormWindowState.Normal)
+                    this.WindowState = FormWindowState.Minimized;
+                this.Visible = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -159,6 +172,7 @@ namespace LockTimer
             if (IfClose)
             {
                 stopListen();
+                System.Environment.Exit(0);
             }
             else
             {
@@ -166,7 +180,7 @@ namespace LockTimer
                 e.Cancel = true;
                 if (this.WindowState == FormWindowState.Normal)
                     this.WindowState = FormWindowState.Minimized;
-                
+                this.Visible = false;
 
             }
         }
@@ -213,5 +227,6 @@ namespace LockTimer
             IfClose = false;
 
         }
+    
     }
 }
