@@ -23,7 +23,9 @@ namespace LockTimer
         int TargetSecondTotal=0;
         private void Locker_Click(object sender, EventArgs e)
         {
-           
+            IfClose = false;
+            ReSetTime.Visible = false;//上鎖之後不可以重置
+            btnStartStop.Visible = false;//上鎖之後不可以暫停
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 label5.Text = "請輸入時間";
@@ -140,6 +142,8 @@ namespace LockTimer
             if (e.KeyValue == 120)
             {
                 IfClose = true;
+                ReSetTime.Visible = true;//上鎖之後點選F9可以重置
+                btnStartStop.Visible = true;//上鎖之後點選F9可以暫停
                 Help.ChangeLabel3Text = "關閉程式前請先點一次F9，否則無法關閉";
                 Help.HelpLabel3.Visible = true;
             }
